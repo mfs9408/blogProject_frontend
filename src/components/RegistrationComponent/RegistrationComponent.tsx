@@ -6,9 +6,13 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import isEqual from 'lodash.isequal';
 import { AuthServiceBase } from '../../services/AuthService.base';
-import useStyles from './Registration.styles';
+import useStyles from './RegistrationComponent.styles';
+import { RegistrationInterface } from '../../types';
 
-const Registration = () => {
+const RegistrationComponent = ({
+  isRegistration,
+  setIsRegistration,
+}: RegistrationInterface) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -37,20 +41,21 @@ const Registration = () => {
       <Grid
         container
         item
-        xs={11}
-        md={3}
         justifyContent="center"
         spacing={1}
         className={classes.root}
       >
         <Grid item>
-          <Typography variant="h5">Registration</Typography>
+          <Typography variant="h6" className={classes.typography}>
+            Registration
+          </Typography>
         </Grid>
         <Grid item xs={10}>
           <TextField
             name="email"
             variant="outlined"
             placeholder="Email"
+            color="secondary"
             fullWidth
             required
           />
@@ -60,6 +65,7 @@ const Registration = () => {
             name="nickname"
             variant="outlined"
             placeholder="Nickname"
+            color="secondary"
             fullWidth
             required
           />
@@ -69,6 +75,7 @@ const Registration = () => {
             name="password"
             variant="outlined"
             placeholder="Password"
+            color="secondary"
             fullWidth
             required
           />
@@ -78,18 +85,29 @@ const Registration = () => {
             name="confirmedPassword"
             variant="outlined"
             placeholder="Repeat password"
+            color="secondary"
             fullWidth
             required
           />
         </Grid>
         <Grid item xs={10}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" color="secondary" fullWidth>
             Send
           </Button>
+        </Grid>
+        <Grid item>
+          <Typography
+            variant="h6"
+            color="secondary"
+            className={classes.clickedTypography}
+            onClick={() => setIsRegistration(!isRegistration)}
+          >
+            Authorization
+          </Typography>
         </Grid>
       </Grid>
     </form>
   );
 };
 
-export default Registration;
+export default RegistrationComponent;

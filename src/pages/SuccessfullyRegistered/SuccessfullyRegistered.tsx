@@ -2,8 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Link from '../../components/Link/Link';
 import useStyles from './SuccessfullyRegistered.styles';
+import Link from '../../components/Link';
 
 const SuccessfullyRegistered = () => {
   const classes = useStyles();
@@ -29,8 +29,8 @@ const SuccessfullyRegistered = () => {
             confirmation.
           </Typography>
           <Typography variant="body1" align="center">
-            <Link to="/api/" label="Click here " />
-            to come on main page
+            <Link to="/api/main" label="Click here " />
+            to come on main page.
           </Typography>
         </Paper>
       </Grid>
