@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './Post.styles';
 import ContentBuilder from '../ContentBuilder';
 import PostLink from '../PostLink';
+import Rating from '../Rating';
 
 const Post = ({
   _id,
@@ -21,7 +22,7 @@ const Post = ({
   return (
     <Grid container justifyContent="flex-start" className={classes.root}>
       <Grid item xs={1}>
-        {rating}
+        <Rating rating={rating} />
       </Grid>
       <Grid item xs={11}>
         <Paper className={classes.paper}>
