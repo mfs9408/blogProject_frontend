@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { apiClient } from '../../Api';
-import { BaseServerResponse, PostInterface } from '../../types';
 import Post from '../../components/Post';
+import { BaseServerResponse, PostInterface } from '../../types';
+import { apiClient } from '../../Api';
 
-const MainPage = () => {
+const MyPosts = () => {
   const [posts, setPosts] = useState<PostInterface[] | null>(null);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
 
   useEffect(() => {
     apiClient
-      .get<BaseServerResponse<PostInterface[]>>('/1')
+      .get<BaseServerResponse<PostInterface[]>>('/myposts')
       .then(({ data }) => setPosts(data.payload))
       .catch((e) => console.log(e));
     setIsAppInitialized(true);
@@ -29,9 +29,9 @@ const MainPage = () => {
         ? posts.map((post: PostInterface) => (
             <Post key={post._id} {...post} pointerEvent="auto" />
           ))
-        : 'There are no posts'}
+        : 'There are no posts yet'}
     </>
   );
 };
 
-export default MainPage;
+export default MyPosts;

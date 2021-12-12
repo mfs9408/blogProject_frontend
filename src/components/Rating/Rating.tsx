@@ -13,10 +13,10 @@ interface RatingProperty {
 
 const Rating = ({ rating }: RatingProperty) => {
   const classes = useStyles();
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const size = isSm ? 'h6' : 'h4';
-  const textSize = isSm ? 'medium' : 'large';
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const SIZE = isSm ? 'h6' : 'h4';
+  const TEXT_SIZE = isSm ? 'medium' : 'large';
 
   return (
     <Grid
@@ -25,11 +25,11 @@ const Rating = ({ rating }: RatingProperty) => {
       justifyContent="flex-start"
       alignItems="center"
     >
-      <ArrowUpwardIcon fontSize={textSize} className={classes.up} />
-      <Typography className={classes.typography} variant={size}>
+      <ArrowUpwardIcon fontSize={TEXT_SIZE} className={classes.up} />
+      <Typography className={classes.typography} variant={SIZE}>
         {rating}
       </Typography>
-      <ArrowDownwardIcon fontSize={textSize} className={classes.down} />
+      <ArrowDownwardIcon fontSize={TEXT_SIZE} className={classes.down} />
     </Grid>
   );
 };

@@ -24,9 +24,6 @@ const AppBar = () => {
             <AppBarLink to="/api" pathname={location.pathname}>
               <Typography variant="h6">Main</Typography>
             </AppBarLink>
-            <AppBarLink to="/api/myposts" pathname={location.pathname}>
-              <Typography variant="h6">My posts</Typography>
-            </AppBarLink>
           </Grid>
           <Grid container justifyContent="flex-end" item xs={4}>
             <TextField
@@ -42,11 +39,3 @@ const AppBar = () => {
 };
 
 export default AppBar;
-
-/*<IconButton*/
-/*  color="inherit"*/
-/*  onClick={toggleOpen}*/
-/*  className={classes.menuButton}*/
-/*>*/
-/*  <MenuIcon />*/
-/*</IconButton>*/

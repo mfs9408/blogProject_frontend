@@ -4,6 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MainPage from '../pages/MainPage';
 import SuccessfullyRegistered from '../pages/SuccessfullyRegistered';
 import PostPage from '../pages/PostPage/PostPage';
+import MyPosts from '../pages/MyPosts';
+import Template from '../components/Template';
 
 const Router = () => {
   const path = '/api';
@@ -11,15 +13,17 @@ const Router = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Routes>
-        <Route
-          path={`${path}/successfullyregistered`}
-          element={<SuccessfullyRegistered />}
-        />
-        <Route path={`${path}/myposts`} element={<div>my posts</div>} />
-        <Route path={`${path}/post/:id`} element={<PostPage />} />
-        <Route path={`${path}/`} element={<MainPage />} />
-      </Routes>
+      <Template>
+        <Routes>
+          <Route
+            path={`${path}/successfullyregistered`}
+            element={<SuccessfullyRegistered />}
+          />
+          <Route path={`${path}/myposts`} element={<MyPosts />} />
+          <Route path={`${path}/post/:id`} element={<PostPage />} />
+          <Route path={`${path}/`} element={<MainPage />} />
+        </Routes>
+      </Template>
     </BrowserRouter>
   );
 };

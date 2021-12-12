@@ -21,7 +21,7 @@ const TemporaryAppBar = () => {
           <DoubleArrowIcon color="secondary" />
         </Grid>
         <Grid container item>
-          <AppBarLink to="/api/main" pathname={location.pathname}>
+          <AppBarLink to="/api" pathname={location.pathname}>
             <Typography variant="h6">Main</Typography>
           </AppBarLink>
           <AppBarLink to="/api/myposts" pathname={location.pathname}>
