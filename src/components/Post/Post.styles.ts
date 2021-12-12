@@ -14,5 +14,15 @@ export default makeStyles((theme: Theme) =>
     title: {
       paddingBottom: theme.spacing(1),
     },
+    ratingSm: {
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+    ratingMd: {
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
   })
 );

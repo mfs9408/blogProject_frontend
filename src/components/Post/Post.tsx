@@ -1,12 +1,12 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { PostInterface } from '../../types';
 import { Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import useStyles from './Post.styles';
 import ContentBuilder from '../ContentBuilder';
+import { PostInterface } from '../../types';
 import PostLink from '../PostLink';
 import Rating from '../Rating';
+import useStyles from './Post.styles';
 
 const Post = ({
   _id,
@@ -21,10 +21,10 @@ const Post = ({
 
   return (
     <Grid container justifyContent="flex-start" className={classes.root}>
-      <Grid item xs={1}>
+      <Grid item xs={1} className={classes.ratingSm}>
         <Rating rating={rating} />
       </Grid>
-      <Grid item xs={11}>
+      <Grid item xs={12} md={11}>
         <Paper className={classes.paper}>
           <Grid item container spacing={1} xs={12} className={classes.author}>
             <Grid item>
@@ -47,6 +47,9 @@ const Post = ({
                 user={user.author}
               />
             ))}
+          </Grid>
+          <Grid container className={classes.ratingMd}>
+            <Rating rating={rating} />
           </Grid>
         </Paper>
       </Grid>
