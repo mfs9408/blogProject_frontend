@@ -13,7 +13,6 @@ export default makeStyles((theme) =>
       marginBottom: theme.spacing(1),
     },
     button: {
-      color: '#465059',
       '&:hover': {
         background: 'rgba(0,130,250,0.1)',
         color: '#0082fa',

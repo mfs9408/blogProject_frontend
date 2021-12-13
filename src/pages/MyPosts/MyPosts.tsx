@@ -3,15 +3,17 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Post from '../../components/Post';
 import { BaseServerResponse, PostInterface } from '../../types';
 import { apiClient } from '../../Api';
+import { useSelector } from '../../store';
 
 const MyPosts = () => {
-  const [posts, setPosts] = useState<PostInterface[] | null>(null);
+  const [myPosts, setMyPosts] = useState<PostInterface[] | null>(null);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     apiClient
-      .get<BaseServerResponse<PostInterface[]>>('/myposts')
-      .then(({ data }) => setPosts(data.payload))
+      .post<BaseServerResponse<PostInterface[]>>('/myposts', user?.id)
+      .then(({ data }) => setMyPosts(data.payload))
       .catch((e) => console.log(e));
     setIsAppInitialized(true);
   }, []);
@@ -25,8 +27,8 @@ const MyPosts = () => {
 
   return (
     <>
-      {Array.isArray(posts) && posts.length !== 0
-        ? posts.map((post: PostInterface) => (
+      {Array.isArray(myPosts) && myPosts.length !== 0
+        ? myPosts.map((post: PostInterface) => (
             <Post key={post._id} {...post} pointerEvent="auto" />
           ))
         : 'There are no posts yet'}

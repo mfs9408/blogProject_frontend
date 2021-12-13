@@ -35,12 +35,12 @@ const UserMenu = () => {
             </ListItemText>
           </ListItem>
         </MenuLink>
-        <ListItem button className={classes.button}>
+        <ListItem disabled button className={classes.button}>
           <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
             Comments
           </ListItemText>
         </ListItem>
-        <ListItem button className={classes.button}>
+        <ListItem disabled button className={classes.button}>
           <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
             Favorites
           </ListItemText>

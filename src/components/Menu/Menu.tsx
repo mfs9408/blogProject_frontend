@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RegistrationComponent from '../RegistrationComponent';
 import AuthorizationComponent from '../AuthorizationComponent';
 import { useSelector } from '../../store';
-import UserMenu from '../UserManu';
+import UserMenu from '../UserMenu';
 
 const Menu = () => {
   const [isRegistration, setIsRegistration] = useState<boolean>(false);
