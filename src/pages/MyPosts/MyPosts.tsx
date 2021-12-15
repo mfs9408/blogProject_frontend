@@ -12,7 +12,9 @@ const MyPosts = () => {
 
   useEffect(() => {
     apiClient
-      .post<BaseServerResponse<PostInterface[]>>('/myposts', user?.id)
+      .post<BaseServerResponse<PostInterface[]>>('/myposts', {
+        userId: user?.id,
+      })
       .then(({ data }) => setMyPosts(data.payload))
       .catch((e) => console.log(e));
     setIsAppInitialized(true);
