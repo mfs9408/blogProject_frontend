@@ -18,7 +18,7 @@ const MyPosts = () => {
       .then(({ data }) => setMyPosts(data.payload))
       .catch((e) => console.log(e));
     setIsAppInitialized(true);
-  }, []);
+  }, [user]);
 
   if (!isAppInitialized)
     return (

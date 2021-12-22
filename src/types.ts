@@ -39,6 +39,7 @@ export interface PostInterface {
   rating: number;
   creatingDate: string;
   pointerEvent?: 'auto' | 'none' | undefined;
+  usersScore: number;
 }
 
 export type ContentInterface = TextProperty | ImgProperty;

@@ -3,18 +3,24 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { apiClient } from '../../Api';
 import { BaseServerResponse, PostInterface } from '../../types';
 import Post from '../../components/Post';
+import { useSelector } from '../../store';
 
 const MainPage = () => {
   const [posts, setPosts] = useState<PostInterface[] | null>(null);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     apiClient
-      .get<BaseServerResponse<PostInterface[]>>('/1')
-      .then(({ data }) => setPosts(data.payload))
+      .post<BaseServerResponse<PostInterface[]>>('/authposts/1', {
+        userId: user?.id,
+      })
+      .then(({ data }) => {
+        setPosts(data.payload);
+        return setIsAppInitialized(true);
+      })
       .catch((e) => console.log(e));
-    setIsAppInitialized(true);
-  }, []);
+  }, [user]);
 
   if (!isAppInitialized)
     return (

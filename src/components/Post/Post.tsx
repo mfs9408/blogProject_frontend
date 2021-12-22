@@ -7,6 +7,7 @@ import { PostInterface } from '../../types';
 import PostLink from '../PostLink';
 import Rating from '../Rating';
 import useStyles from './Post.styles';
+import objectHash from 'object-hash';
 
 const Post = ({
   _id,
@@ -16,13 +17,19 @@ const Post = ({
   title,
   content,
   pointerEvent,
+  usersScore,
 }: PostInterface) => {
   const classes = useStyles();
 
   return (
-    <Grid container justifyContent="flex-start" className={classes.root}>
+    <Grid
+      container
+      justifyContent="flex-start"
+      className={classes.root}
+      key={objectHash(usersScore)}
+    >
       <Grid item xs={1} className={classes.ratingSm}>
-        <Rating rating={rating} />
+        <Rating rating={rating} postId={_id} usersScore={usersScore} />
       </Grid>
       <Grid item xs={12} md={11}>
         <Paper className={classes.paper}>
@@ -49,7 +56,7 @@ const Post = ({
             ))}
           </Grid>
           <Grid container className={classes.ratingMd}>
-            <Rating rating={rating} />
+            <Rating rating={rating} postId={_id} usersScore={usersScore} />
           </Grid>
         </Paper>
       </Grid>
