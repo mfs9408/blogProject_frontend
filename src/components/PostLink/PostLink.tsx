@@ -5,7 +5,7 @@ import useStyles from './PostLink.styles';
 
 type TemplateProps = PropsWithChildren<{
   to: string;
-  pointerEvent?: 'auto' | 'none' | undefined
+  pointerEvent?: 'auto' | 'none' | undefined;
 }>;
 
 const PostLink = ({ children, to, pointerEvent }: TemplateProps) => {
@@ -16,7 +16,7 @@ const PostLink = ({ children, to, pointerEvent }: TemplateProps) => {
       className={classes.root}
       underline="none"
       component={RouterLink}
-      to={`post/${to}`}
+      to={`${to}`}
     >
       {children}
     </MuiLink>

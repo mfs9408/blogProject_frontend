@@ -6,6 +6,7 @@ import SuccessfullyRegistered from '../pages/SuccessfullyRegistered';
 import PostPage from '../pages/PostPage/PostPage';
 import MyPosts from '../pages/MyPosts';
 import Template from '../components/Template';
+import NewPostPage from '../pages/NewPostPage';
 
 const Router = () => {
   const path = '/api';
@@ -20,7 +21,8 @@ const Router = () => {
             element={<SuccessfullyRegistered />}
           />
           <Route path={`${path}/myposts`} element={<MyPosts />} />
-          <Route path={`${path}/post/:id`} element={<PostPage />} />
+          <Route path={`${path}/:id`} element={<PostPage />} />
+          <Route path={`${path}/newpost`} element={<NewPostPage />} />
           <Route path={`${path}/`} element={<MainPage />} />
         </Routes>
       </Template>

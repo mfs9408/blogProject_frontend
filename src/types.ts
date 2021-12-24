@@ -67,3 +67,9 @@ export interface AuthorizationData {
   email: string;
   password: string;
 }
+
+export type PostType = {
+  type: string;
+  value: string;
+  id: string;
+};
