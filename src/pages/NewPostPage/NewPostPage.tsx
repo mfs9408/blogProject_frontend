@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@mui/material/Button';
@@ -6,43 +6,41 @@ import TextField from '@material-ui/core/TextField';
 import { useDispatch } from 'react-redux';
 import useStyles from './NewPostPage.styles';
 import { useSelector } from '../../store';
-import { BaseServerResponse, PostType } from '../../types';
+import { PostType } from '../../types';
 import ContentCreator from '../../components/FieldsCreator';
 import AddContentField from '../../components/AddContentField';
-import { postActions } from '../../store/postContent/slice';
-import { apiClient } from '../../Api';
+import { PostService } from '../../services/PostService';
+import { postActions } from '../../store/postData/slice';
 
 const NewPostPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [imgArray, setImgArray] = useState<File[]>([]);
   const { user } = useSelector((state) => state.user);
-  const content = useSelector((state) => state.content);
+  const { content, title } = useSelector((state) => state.postData);
 
-  const [title, setTitle] = useState<string>('');
-
-  const onSubmit = (event: FormEvent) => {
+  const onSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const date = new Date();
+    const contentArray = content.map((field) => {
+      if (field.type === 'string') {
+        return {
+          type: field.type,
+          value: event.target[field.id].value,
+          id: field.id,
+        };
+      }
 
-    const post = {
-      user: {
-        author: user?.nickname,
-        userId: user?.id,
-      },
-      title: title,
-      creatingDate: date.toISOString(),
-      content: content,
-    };
+      setImgArray([...imgArray, event.target[field.id].files[0]]);
+      return {
+        type: field.type,
+        value: event.target[field.id].files[0]?.name,
+        id: field.id,
+      };
+    });
 
-    apiClient
-      .post<BaseServerResponse<string>>('/newpost', {
-        payload: post,
-      })
-      .then(({ data }) => {
-        console.log(data.payload);
-      });
+    await PostService.createNewPost(user, title, contentArray, imgArray);
   };
 
   useEffect(() => {
@@ -65,7 +63,9 @@ const NewPostPage = () => {
             multiline
             value={title}
             className={classes.title}
-            onChange={(event) => setTitle(event.target.value)}
+            onChange={(event) =>
+              dispatch(postActions.changeTitle(event.target.value))
+            }
           />
           {content.map((data: PostType) => (
             <ContentCreator key={data.id} {...data} />
@@ -73,12 +73,13 @@ const NewPostPage = () => {
         </Grid>
         <AddContentField />
         <Button
+          type="submit"
           variant="contained"
           color="secondary"
           className={classes.button}
-          onClick={onSubmit}
+          // onClick={onSubmit}
         >
-          Create post
+          Create a post
         </Button>
       </Paper>
     </form>

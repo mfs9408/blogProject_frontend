@@ -12,6 +12,7 @@ export default (isPathTheSame: boolean) =>
         '&:hover': {
           background: 'rgba(0,130,250,0.1)',
           color: '#0082fa',
+          boxShadow: 'inset 0px -7px 1px -4px #0082fa',
         },
       },
     })

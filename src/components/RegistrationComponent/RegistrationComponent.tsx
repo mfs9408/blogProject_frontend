@@ -8,6 +8,7 @@ import isEqual from 'lodash.isequal';
 import { AuthServiceBase } from '../../services/AuthService.base';
 import useStyles from './RegistrationComponent.styles';
 import { RegistrationInterface } from '../../types';
+import { Paper } from '@material-ui/core';
 
 const RegistrationComponent = ({
   isRegistration,
@@ -38,74 +39,81 @@ const RegistrationComponent = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid
-        container
-        item
-        justifyContent="center"
-        spacing={1}
-        className={classes.root}
-      >
-        <Grid item>
-          <Typography variant="h6" className={classes.typography}>
-            Registration
-          </Typography>
+      <Paper>
+        <Grid
+          container
+          item
+          justifyContent="center"
+          spacing={1}
+          className={classes.root}
+        >
+          <Grid item>
+            <Typography variant="h6" className={classes.typography}>
+              Registration
+            </Typography>
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              name="email"
+              variant="outlined"
+              placeholder="Email"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              name="nickname"
+              variant="outlined"
+              placeholder="Nickname"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              name="password"
+              variant="outlined"
+              placeholder="Password"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              name="confirmedPassword"
+              variant="outlined"
+              placeholder="Repeat password"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              Send
+            </Button>
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="h6"
+              color="secondary"
+              className={classes.clickedTypography}
+              onClick={() => setIsRegistration(!isRegistration)}
+            >
+              Authorization
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={10}>
-          <TextField
-            name="email"
-            variant="outlined"
-            placeholder="Email"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <TextField
-            name="nickname"
-            variant="outlined"
-            placeholder="Nickname"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <TextField
-            name="password"
-            variant="outlined"
-            placeholder="Password"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <TextField
-            name="confirmedPassword"
-            variant="outlined"
-            placeholder="Repeat password"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <Button type="submit" variant="contained" color="secondary" fullWidth>
-            Send
-          </Button>
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="h6"
-            color="secondary"
-            className={classes.clickedTypography}
-            onClick={() => setIsRegistration(!isRegistration)}
-          >
-            Authorization
-          </Typography>
-        </Grid>
-      </Grid>
+      </Paper>
     </form>
   );
 };

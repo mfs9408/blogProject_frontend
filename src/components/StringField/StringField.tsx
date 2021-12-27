@@ -1,21 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { ChangeEvent, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import IconButton from '@material-ui/core/IconButton';
-import useStyles from './StringField.styles';
-import { postActions } from '../../store/postContent/slice';
 import { useDispatch } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import useStyles from './StringField.styles';
+import { postActions } from '../../store/postData/slice';
 
 interface StringFieldInterface {
   id: string;
-  value: string;
+  value?: string;
 }
 
 const StringField = ({ id, value }: StringFieldInterface) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [fieldValue, setFieldValue] = useState<string>(value);
+  const [fieldValue, setFieldValue] = useState<string>(value || '');
 
   const removeField = () => dispatch(postActions.removeField(id));
 
@@ -23,15 +23,11 @@ const StringField = ({ id, value }: StringFieldInterface) => {
     setFieldValue(event.target.value);
   };
 
-  useEffect(() => {
-    dispatch(postActions.changeValue({ fieldValue, id }));
-  }, [fieldValue]);
-
   return (
     <Grid container justifyContent="flex-start">
       <Grid item className={classes.textField}>
         <TextField
-          name="stringContent"
+          name={id}
           value={fieldValue}
           placeholder="Enter text"
           variant="outlined"

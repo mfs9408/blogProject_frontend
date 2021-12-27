@@ -32,8 +32,8 @@ export interface AllPostsResponse
   extends BaseServerResponse<PostInterface[] | null> {}
 
 export interface PostInterface {
-  _id: string;
-  user: AuthorInterface;
+  id: string;
+  user: UserInterface;
   title: string;
   content: ContentInterface[];
   rating: number;
@@ -44,13 +44,13 @@ export interface PostInterface {
 
 export type ContentInterface = TextProperty | ImgProperty;
 
-interface AuthorInterface {
-  author: string;
+export interface UserInterface {
+  nickname: string;
   userId: string;
 }
 
 interface BaseContentProperty<T, V> {
-  _id: string;
+  id: string;
   type: T;
   value: V;
 }
@@ -70,6 +70,6 @@ export interface AuthorizationData {
 
 export type PostType = {
   type: string;
-  value: string;
+  value?: string;
   id: string;
 };

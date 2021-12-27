@@ -6,7 +6,7 @@ export default makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(3),
     },
     paper: {
-      padding: theme.spacing(2, 3, 1),
+      padding: theme.spacing(2, 3, 2),
     },
     author: {
       paddingBottom: theme.spacing(1),

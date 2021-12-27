@@ -5,10 +5,11 @@ import { ContentInterface } from '../../types';
 interface Content {
   content: ContentInterface;
   user: string;
+  postId: string;
 }
 
-const ContentBuilder = ({ user, content }: Content) => {
-  const printContent = getContentValue(content, user);
+const ContentBuilder = ({ content, postId }: Content) => {
+  const printContent = getContentValue(content, postId);
 
   return <div>{printContent}</div>;
 };

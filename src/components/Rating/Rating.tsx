@@ -6,9 +6,8 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import useStyles from './Rating.styles';
 import theme from '../../theme';
-import { apiClient } from '../../Api';
 import { useSelector } from '../../store';
-import { BaseServerResponse, PostInterface } from '../../types';
+import { PostService } from '../../services/PostService';
 // import { raiseRating, decreaseRating } from './helpers';
 
 interface RatingProperty {
@@ -29,15 +28,7 @@ const Rating = ({ rating, postId, usersScore }: RatingProperty) => {
   const TEXT_SIZE = isSm ? 'medium' : 'large';
 
   const changeScore = () => {
-    apiClient
-      .post<BaseServerResponse<PostInterface>>('/changerate', {
-        userId: user?.id,
-        postId: postId,
-        rating: score,
-      })
-      .then(({ data }) => {
-        setRate(data.payload.rating);
-      });
+    return PostService.fetchRating(user?.id, postId, score, setRate);
   };
 
   const raiseRating = () => {

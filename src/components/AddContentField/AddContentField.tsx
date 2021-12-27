@@ -5,15 +5,18 @@ import ArticleIcon from '@mui/icons-material/Article';
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useDispatch } from 'react-redux';
-import { postActions } from '../../store/postContent/slice';
+import { postActions } from '../../store/postData/slice';
 import useStyles from './AddContentField.styles';
 
 const AddContentField = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const addField = () =>
-    dispatch(postActions.addField({ type: 'string', value: '', id: uuidv4() }));
+  const addStringField = () =>
+    dispatch(postActions.addField({ type: 'string', id: uuidv4() }));
+
+  const addImageField = () =>
+    dispatch(postActions.addField({ type: 'img', id: uuidv4() }));
 
   return (
     <Grid
@@ -23,10 +26,10 @@ const AddContentField = () => {
       xs={12}
       className={classes.root}
     >
-      <IconButton onClick={addField}>
+      <IconButton onClick={addStringField}>
         <ArticleIcon color="primary" fontSize="large" />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={addImageField}>
         <AddAPhotoIcon color="primary" fontSize="large" />
       </IconButton>
     </Grid>

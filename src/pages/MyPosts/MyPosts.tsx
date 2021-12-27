@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Post from '../../components/Post';
-import { BaseServerResponse, PostInterface } from '../../types';
-import { apiClient } from '../../Api';
+import { PostInterface } from '../../types';
 import { useSelector } from '../../store';
+import { PostService } from '../../services/PostService';
 
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState<PostInterface[] | null>(null);
@@ -11,13 +11,7 @@ const MyPosts = () => {
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    apiClient
-      .post<BaseServerResponse<PostInterface[]>>('/myposts', {
-        userId: user?.id,
-      })
-      .then(({ data }) => setMyPosts(data.payload))
-      .catch((e) => console.log(e));
-    setIsAppInitialized(true);
+    PostService.fetchMyPosts(user?.id, setMyPosts, setIsAppInitialized);
   }, [user]);
 
   if (!isAppInitialized)
@@ -29,11 +23,10 @@ const MyPosts = () => {
 
   return (
     <>
-      {Array.isArray(myPosts) && myPosts.length !== 0
-        ? myPosts.map((post: PostInterface) => (
-            <Post key={post._id} {...post} pointerEvent="auto" />
-          ))
-        : 'There are no posts yet'}
+      {myPosts &&
+        myPosts.map((post: PostInterface) => (
+          <Post key={post.id} {...post} pointerEvent="auto" />
+        ))}
     </>
   );
 };

@@ -1,12 +1,10 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core';
 
-export default makeStyles((theme) =>
+export default makeStyles((theme: Theme) =>
   createStyles({
     box: {
-      border: '1px solid #d7dae0',
-      borderRadius: 10,
       padding: theme.spacing(2, 0),
-      background: '#fff',
       marginBottom: theme.spacing(2),
     },
     title: {

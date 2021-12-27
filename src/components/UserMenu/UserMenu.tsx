@@ -9,6 +9,7 @@ import useStyles from './UserMenu.styles';
 import { useSelector } from '../../store';
 import MenuLink from '../MenuLink';
 import Button from '@material-ui/core/Button';
+import {Paper} from "@material-ui/core";
 
 const UserMenu = () => {
   const location = useLocation();
@@ -20,35 +21,37 @@ const UserMenu = () => {
 
   return (
     <>
-      <Grid container className={classes.box}>
-        <Grid container item spacing={1} className={classes.title}>
-          <Grid item>
-            <Avatar />
+      <Paper>
+        <Grid container className={classes.box}>
+          <Grid container item spacing={1} className={classes.title}>
+            <Grid item>
+              <Avatar />
+            </Grid>
+            <Grid item>
+              <Typography>{user.nickname}</Typography>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography>{user.nickname}</Typography>
-          </Grid>
-        </Grid>
-        <Grid container direction="column">
-          <MenuLink to="/api/myposts" pathname={location.pathname}>
-            <ListItem button className={classes.button}>
+          <Grid container direction="column">
+            <MenuLink to="/api/myposts" pathname={location.pathname}>
+              <ListItem button className={classes.button}>
+                <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
+                  My posts
+                </ListItemText>
+              </ListItem>
+            </MenuLink>
+            <ListItem disabled button className={classes.button}>
               <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
-                My posts
+                Comments
               </ListItemText>
             </ListItem>
-          </MenuLink>
-          <ListItem disabled button className={classes.button}>
-            <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
-              Comments
-            </ListItemText>
-          </ListItem>
-          <ListItem disabled button className={classes.button}>
-            <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
-              Favorites
-            </ListItemText>
-          </ListItem>
+            <ListItem disabled button className={classes.button}>
+              <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
+                Favorites
+              </ListItemText>
+            </ListItem>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
       <MenuLink to="/api/newpost" pathname={location.pathname}>
         <Button fullWidth color="secondary" variant="contained">
           Create new post
