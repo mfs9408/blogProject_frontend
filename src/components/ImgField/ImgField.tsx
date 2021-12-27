@@ -13,7 +13,6 @@ interface StringFieldInterface {
 const ImgField = ({ id }: StringFieldInterface) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-    console.log(id)
 
   const removeField = () => dispatch(postActions.removeField(id));
 
