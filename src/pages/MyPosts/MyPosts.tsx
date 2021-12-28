@@ -23,10 +23,11 @@ const MyPosts = () => {
 
   return (
     <>
-      {myPosts &&
-        myPosts.map((post: PostInterface) => (
-          <Post key={post.id} {...post} pointerEvent="auto" />
-        ))}
+      {myPosts && myPosts.length > 0
+        ? myPosts.map((post: PostInterface) => (
+            <Post key={post.id} {...post} pointerEvent="auto" />
+          ))
+        : 'Постов нет'}
     </>
   );
 };

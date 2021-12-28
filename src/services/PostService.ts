@@ -38,11 +38,13 @@ export class PostService {
   static fetchPosts(
     userId: string | undefined,
     setPosts: Dispatch<SetStateAction<PostInterface[] | null>>,
-    setIsAppInitialized: Dispatch<SetStateAction<boolean>>
+    setIsAppInitialized: Dispatch<SetStateAction<boolean>>,
+    searchValue: string | null
   ) {
     return apiClient
       .post<BaseServerResponse<PostInterface[]>>('/authposts/1', {
         userId: userId,
+        searchValue: searchValue,
       })
       .then(({ data }) => {
         setPosts(data.payload);

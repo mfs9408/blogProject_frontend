@@ -9,7 +9,7 @@ import useStyles from './UserMenu.styles';
 import { useSelector } from '../../store';
 import MenuLink from '../MenuLink';
 import Button from '@material-ui/core/Button';
-import {Paper} from "@material-ui/core";
+import { Paper } from '@material-ui/core';
 
 const UserMenu = () => {
   const location = useLocation();
@@ -39,6 +39,11 @@ const UserMenu = () => {
                 </ListItemText>
               </ListItem>
             </MenuLink>
+            <ListItem disabled button className={classes.button}>
+              <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
+                Search
+              </ListItemText>
+            </ListItem>
             <ListItem disabled button className={classes.button}>
               <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
                 Comments

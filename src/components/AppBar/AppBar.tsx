@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MUIAppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
@@ -8,10 +8,22 @@ import Container from '@material-ui/core/Container';
 import { useLocation } from 'react-router-dom';
 import useStyles from './AppBar.styles';
 import AppBarLink from '../AppBarLink';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../store';
+import { searchDataActions } from '../../store/searchData/slice';
 
 const AppBar = () => {
   const classes = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const { searchValue } = useSelector((state) => state.searchData);
+
+  const onValueChange = (
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    dispatch(searchDataActions.changeSearchValue(event.target.value));
+  };
 
   return (
     <MUIAppBar className={classes.appBar} position="relative">
@@ -29,7 +41,9 @@ const AppBar = () => {
             <TextField
               color="secondary"
               variant="outlined"
-              placeholder="Find"
+              placeholder="Quick search"
+              value={searchValue}
+              onChange={onValueChange}
             />
           </Grid>
         </Grid>

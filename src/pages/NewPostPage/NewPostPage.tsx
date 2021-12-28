@@ -11,10 +11,12 @@ import ContentCreator from '../../components/FieldsCreator';
 import AddContentField from '../../components/AddContentField';
 import { PostService } from '../../services/PostService';
 import { postActions } from '../../store/postData/slice';
+import { useNavigate } from 'react-router-dom';
 
 const NewPostPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [imgArray, setImgArray] = useState<File[]>([]);
   const { user } = useSelector((state) => state.user);
@@ -41,6 +43,7 @@ const NewPostPage = () => {
     });
 
     await PostService.createNewPost(user, title, contentArray, imgArray);
+    return navigate('/api');
   };
 
   useEffect(() => {

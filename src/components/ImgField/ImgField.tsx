@@ -19,7 +19,7 @@ const ImgField = ({ id }: StringFieldInterface) => {
   return (
     <Grid container justifyContent="flex-start" alignItems="center">
       <Grid item className={classes.input}>
-        <input type="file" name={id} />
+        <input type="file" name={id} required />
       </Grid>
       <Grid item className={classes.cancelButton}>
         <IconButton onClick={removeField}>
