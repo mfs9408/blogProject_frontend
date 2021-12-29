@@ -9,21 +9,19 @@ import Template from '../components/Template';
 import NewPostPage from '../pages/NewPostPage';
 
 const Router = () => {
-  const path = '/api';
-
   return (
     <BrowserRouter>
       <CssBaseline />
       <Template>
         <Routes>
           <Route
-            path={`${path}/successfullyregistered`}
+            path={`/successfullyregistered`}
             element={<SuccessfullyRegistered />}
           />
-          <Route path={`${path}/myposts`} element={<MyPosts />} />
-          <Route path={`${path}/:id`} element={<PostPage />} />
-          <Route path={`${path}/newpost`} element={<NewPostPage />} />
-          <Route path={`${path}/`} element={<MainPage />} />
+          <Route path={`/myposts`} element={<MyPosts />} />
+          <Route path={`/:id`} element={<PostPage />} />
+          <Route path={`/newpost`} element={<NewPostPage />} />
+          <Route path={`/`} element={<MainPage />} />
         </Routes>
       </Template>
     </BrowserRouter>

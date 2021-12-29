@@ -32,7 +32,7 @@ const UserMenu = () => {
             </Grid>
           </Grid>
           <Grid container direction="column">
-            <MenuLink to="/api/myposts" pathname={location.pathname}>
+            <MenuLink to="/myposts" pathname={location.pathname}>
               <ListItem button className={classes.button}>
                 <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
                   My posts
@@ -57,7 +57,7 @@ const UserMenu = () => {
           </Grid>
         </Grid>
       </Paper>
-      <MenuLink to="/api/newpost" pathname={location.pathname}>
+      <MenuLink to="/newpost" pathname={location.pathname}>
         <Button fullWidth color="secondary" variant="contained">
           Create new post
         </Button>

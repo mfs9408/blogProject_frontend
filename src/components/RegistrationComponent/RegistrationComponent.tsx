@@ -31,7 +31,7 @@ const RegistrationComponent = ({
         nickname.value,
         password.value
       );
-      navigate('/api/successfullyregistered');
+      navigate('/successfullyregistered');
     } catch (e: any) {
       console.log(e.response.data.message);
     }

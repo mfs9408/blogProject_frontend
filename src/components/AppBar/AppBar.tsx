@@ -33,7 +33,7 @@ const AppBar = () => {
             <DoubleArrowIcon color="secondary" />
           </Grid>
           <Grid container item xs={5}>
-            <AppBarLink to="/api" pathname={location.pathname}>
+            <AppBarLink to="/" pathname={location.pathname}>
               <Typography variant="h6">Main</Typography>
             </AppBarLink>
           </Grid>

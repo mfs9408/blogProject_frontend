@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { PostInterface } from '../../types';
 import Post from '../../components/Post';
 import { useSelector } from '../../store';
 import { PostService } from '../../services/PostService';
 import { searchDataActions } from '../../store/searchData/slice';
 import PageSkeleton from '../../components/PageSkeleton';
+
+const SKELETON_QUANTITY = [1, 2, 3];
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -33,17 +37,25 @@ const MainPage = () => {
   if (!isAppInitialized)
     return (
       <>
-        <PageSkeleton />
+        {SKELETON_QUANTITY.map((number) => (
+          <PageSkeleton key={number} />
+        ))}
       </>
     );
 
   return (
     <>
-      {posts && posts.length > 0
-        ? posts.map((post: PostInterface) => (
-            <Post key={post.id} {...post} pointerEvent="auto" />
-          ))
-        : 'Постов нет'}
+      {posts && posts.length > 0 ? (
+        posts.map((post: PostInterface) => (
+          <Post key={post.id} {...post} pointerEvent="auto" />
+        ))
+      ) : (
+        <Grid container>
+          <Typography color="secondary" variant="h3">
+            Ooops... There are no any posts...
+          </Typography>
+        </Grid>
+      )}
     </>
   );
 };
