@@ -24,5 +24,13 @@ export default makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
+    creatingDate: {
+      flexGrow: 1,
+    },
+    dialogButton: {
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
   })
 );

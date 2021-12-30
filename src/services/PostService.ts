@@ -80,6 +80,13 @@ export class PostService {
       .catch((e) => console.log(e));
   }
 
+  static async deletePost(postId: string) {
+    apiClient
+      .post<BaseServerResponse<boolean>>('/deletepost', { postId: postId })
+      .then(({ data }) => console.log('success'))
+      .catch((e) => console.log(e));
+  }
+
   static async fetchRating(
     userId: string | undefined,
     postId: string,

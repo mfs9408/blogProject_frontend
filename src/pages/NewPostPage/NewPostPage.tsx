@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@mui/material/Button';
@@ -18,12 +18,13 @@ const NewPostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [imgArray, setImgArray] = useState<File[]>([]);
+  // const [imgArray, setImgArray] = useState<File[]>([]);
   const { user } = useSelector((state) => state.user);
   const { content, title } = useSelector((state) => state.postData);
 
   const onSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const imgArray: File[] = [];
 
     const contentArray = content.map((field) => {
       if (field.type === 'string') {
@@ -34,7 +35,8 @@ const NewPostPage = () => {
         };
       }
 
-      setImgArray([...imgArray, event.target[field.id].files[0]]);
+      imgArray.push(event.target[field.id].files[0]);
+      // setImgArray([...imgArray, event.target[field.id].files[0]]);
       return {
         type: field.type,
         value: event.target[field.id].files[0]?.name,
@@ -43,7 +45,7 @@ const NewPostPage = () => {
     });
 
     await PostService.createNewPost(user, title, contentArray, imgArray);
-    return navigate('/api');
+    return navigate('/');
   };
 
   useEffect(() => {

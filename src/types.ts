@@ -40,6 +40,7 @@ export interface PostInterface {
   creatingDate: string;
   pointerEvent?: 'auto' | 'none' | undefined;
   usersScore: number;
+  removable?: boolean;
 }
 
 export type ContentInterface = TextProperty | ImgProperty;

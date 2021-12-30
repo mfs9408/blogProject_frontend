@@ -4,6 +4,7 @@ import Post from '../../components/Post';
 import { PostInterface } from '../../types';
 import { useSelector } from '../../store';
 import { PostService } from '../../services/PostService';
+import NoPosts from '../../components/NoPosts';
 
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState<PostInterface[] | null>(null);
@@ -12,7 +13,7 @@ const MyPosts = () => {
 
   useEffect(() => {
     PostService.fetchMyPosts(user?.id, setMyPosts, setIsAppInitialized);
-  }, [user]);
+  }, [user, myPosts]);
 
   if (!isAppInitialized)
     return (
@@ -23,11 +24,13 @@ const MyPosts = () => {
 
   return (
     <>
-      {myPosts && myPosts.length > 0
-        ? myPosts.map((post: PostInterface) => (
-            <Post key={post.id} {...post} pointerEvent="auto" />
-          ))
-        : 'Постов нет'}
+      {myPosts && user && myPosts.length > 0 ? (
+        myPosts.map((post: PostInterface) => (
+          <Post key={post.id} {...post} pointerEvent="auto" />
+        ))
+      ) : (
+        <NoPosts />
+      )}
     </>
   );
 };

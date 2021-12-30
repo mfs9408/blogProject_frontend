@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CancelIcon from '@mui/icons-material/Cancel';
 import objectHash from 'object-hash';
 import ContentBuilder from '../ContentBuilder';
 import { PostInterface } from '../../types';
@@ -9,6 +10,7 @@ import PostLink from '../PostLink';
 import Rating from '../Rating';
 import useStyles from './Post.styles';
 import parseAndFormatDate from '../../utils/parseAndFormatDate';
+import DeleteDialog from '../DeleteDialog';
 
 const Post = ({
   id,
@@ -19,8 +21,10 @@ const Post = ({
   content,
   pointerEvent,
   usersScore,
+  removable,
 }: PostInterface) => {
   const classes = useStyles();
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   return (
     <Grid
@@ -38,10 +42,19 @@ const Post = ({
             <Grid item>
               <Typography variant="body2">{user.nickname}</Typography>
             </Grid>
-            <Grid item>
+            <Grid item className={classes.creatingDate}>
               <Typography variant="body2">
                 {parseAndFormatDate(creatingDate)}
               </Typography>
+            </Grid>
+            <Grid item>
+              {removable && (
+                <CancelIcon
+                  fontSize="small"
+                  className={classes.dialogButton}
+                  onClick={() => setIsDialogOpen(true)}
+                />
+              )}
             </Grid>
           </Grid>
           <Grid item xs={12} className={classes.title}>
@@ -50,20 +63,27 @@ const Post = ({
             </PostLink>
           </Grid>
           <Grid>
-            {content.map((contentProperty) => (
-              <ContentBuilder
-                key={contentProperty.id}
-                content={contentProperty}
-                user={user.nickname}
-                postId={id}
-              />
-            ))}
+            {content &&
+              content.map((contentProperty) => (
+                <ContentBuilder
+                  key={contentProperty.id}
+                  content={contentProperty}
+                  user={user.nickname}
+                  postId={id}
+                />
+              ))}
           </Grid>
           <Grid container className={classes.ratingMd}>
             <Rating rating={rating} postId={id} usersScore={usersScore} />
           </Grid>
         </Paper>
       </Grid>
+      <DeleteDialog
+        title={title}
+        postId={id}
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+      />
     </Grid>
   );
 };

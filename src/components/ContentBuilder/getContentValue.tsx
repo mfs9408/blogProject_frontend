@@ -12,6 +12,6 @@ export const getContentValue = (
     case 'img':
       return <ImageContent value={value} postId={postId} />;
     default:
-      throw new Error(`Не удалось определить тип свойства. Прилетело: ${type}`);
+      return null;
   }
 };
