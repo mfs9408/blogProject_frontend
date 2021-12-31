@@ -1,18 +1,23 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import useStyles from './UserMenu.styles';
 import { useSelector } from '../../store';
 import MenuLink from '../MenuLink';
-import Button from '@material-ui/core/Button';
-import { Paper } from '@material-ui/core';
+import { AuthServiceBase } from '../../services/AuthService.base';
+import { userActions } from '../../store/user/slice';
+import { useDispatch } from 'react-redux';
 
 const UserMenu = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const classes = useStyles();
   const { user } = useSelector((state) => state.user);
@@ -27,9 +32,25 @@ const UserMenu = () => {
             <Grid item>
               <Avatar />
             </Grid>
-            <Grid item>
-              <Typography>{user.nickname}</Typography>
-            </Grid>
+            <div className={classes.nicknameBlock}>
+              <Grid item>
+                <Typography>{user.nickname}</Typography>
+              </Grid>
+              <Grid item className={classes.logout}>
+                <Typography
+                  onClick={async () => {
+                    await AuthServiceBase.logout()
+                      .then(() => {
+                        dispatch(userActions.removeUser());
+                      })
+                      .finally(() => navigate('/'));
+                  }}
+                  variant="body2"
+                >
+                  Выйти
+                </Typography>
+              </Grid>
+            </div>
           </Grid>
           <Grid container direction="column">
             <MenuLink to="/myposts" pathname={location.pathname}>

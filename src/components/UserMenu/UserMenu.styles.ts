@@ -18,5 +18,14 @@ export default makeStyles((theme: Theme) =>
         boxShadow: 'inset 7px 0px 1px -4px #0082fa',
       },
     },
+    nicknameBlock: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    logout: {
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
   })
 );

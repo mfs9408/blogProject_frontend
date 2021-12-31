@@ -7,6 +7,7 @@ import { PostService } from '../../services/PostService';
 import NoPosts from '../../components/NoPosts';
 import { searchDataActions } from '../../store/searchData/slice';
 import PageSkeleton from '../../components/PageSkeleton';
+import { userActions } from '../../store/user/slice';
 
 const SKELETON_QUANTITY = [1, 2, 3];
 

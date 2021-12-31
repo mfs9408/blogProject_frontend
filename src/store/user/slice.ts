@@ -22,6 +22,10 @@ const userSlice = createSlice({
       state.accessToken = payload?.tokens.accessToken;
       state.user = payload?.user;
     },
+    removeUser: (state) => {
+      state.accessToken = null;
+      state.user = null;
+    },
   },
 });
 

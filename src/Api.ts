@@ -4,14 +4,13 @@ export const baseURL = process.env.REACT_APP_SERVER_URL;
 
 export const apiClient = axios.create({
   baseURL,
+  withCredentials: true,
 });
 
-const authInterceptor = (config: any) => {
+apiClient.interceptors.request.use((config) => {
   config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
-};
-
-apiClient.interceptors.request.use(authInterceptor);
+});
 
 const { get, post } = apiClient;
 

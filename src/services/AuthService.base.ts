@@ -43,4 +43,15 @@ export class AuthServiceBase {
     localStorage.setItem('token', data.payload.tokens.refreshToken);
     return data;
   }
+
+  static async logout() {
+    const { data } = await get('/logout', {
+      headers: {},
+      withCredentials: true,
+    });
+    console.log(data);
+
+    localStorage.clear();
+    return data;
+  }
 }
