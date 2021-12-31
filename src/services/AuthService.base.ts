@@ -26,7 +26,8 @@ export class AuthServiceBase {
       {
         email,
         password,
-      }
+      },
+      { headers: {}, withCredentials: true }
     );
 
     localStorage.setItem('token', data.payload.tokens.refreshToken);
@@ -35,9 +36,11 @@ export class AuthServiceBase {
 
   static async check() {
     const { data } = await get<BaseServerResponse<UserResponseInterface>>(
-      '/refresh'
+      '/refresh',
+      { headers: {}, withCredentials: true }
     );
+
     localStorage.setItem('token', data.payload.tokens.refreshToken);
-    return jwt_decode(data.payload.tokens.refreshToken);
+    return data;
   }
 }

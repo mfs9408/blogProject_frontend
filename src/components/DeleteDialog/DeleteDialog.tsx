@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PostService } from '../../services/PostService';
-import { useNavigate } from 'react-router-dom';
 
 interface DialogInterface {
   isDialogOpen: boolean;
@@ -21,8 +20,6 @@ const DeleteDialog = ({
   isDialogOpen,
   setIsDialogOpen,
 }: DialogInterface) => {
-  const navigate = useNavigate();
-
   const handleClose = () => {
     setIsDialogOpen(false);
   };
@@ -30,7 +27,6 @@ const DeleteDialog = ({
   const handlePostDelete = () => {
     PostService.deletePost(postId);
     setIsDialogOpen(false);
-    return navigate('/myposts');
   };
 
   return (

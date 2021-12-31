@@ -32,6 +32,9 @@ const Rating = ({ rating, postId, usersScore }: RatingProperty) => {
   };
 
   const raiseRating = () => {
+    if (!user?.id) {
+      return null;
+    }
     if (score === -1) {
       setScore((score += 1));
       return changeScore();
@@ -47,6 +50,10 @@ const Rating = ({ rating, postId, usersScore }: RatingProperty) => {
   };
 
   const decreaseRating = () => {
+    if (!user?.id) {
+      return null;
+    }
+
     if (score === -1) {
       setScore(0);
       return changeScore();

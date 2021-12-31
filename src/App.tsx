@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Router from './router';
+import { AuthServiceBase } from './services/AuthService.base';
+import { userActions } from './store/user/slice';
+import { useDispatch } from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      AuthServiceBase.check().then((response) =>
+        dispatch(userActions.getUser(response.payload))
+      );
+    }
+  }, [dispatch]);
+
   return <Router />;
 }
 

@@ -31,7 +31,7 @@ const MainPage = () => {
     return () => {
       dispatch(searchDataActions.reset());
     };
-  }, []);
+  }, [dispatch]);
 
   if (!isAppInitialized)
     return (

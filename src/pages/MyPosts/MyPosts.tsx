@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { useDispatch } from 'react-redux';
 import Post from '../../components/Post';
 import { PostInterface } from '../../types';
 import { useSelector } from '../../store';
 import { PostService } from '../../services/PostService';
 import NoPosts from '../../components/NoPosts';
+import { searchDataActions } from '../../store/searchData/slice';
+import PageSkeleton from '../../components/PageSkeleton';
+
+const SKELETON_QUANTITY = [1, 2, 3];
 
 const MyPosts = () => {
+  const dispatch = useDispatch();
+
   const [myPosts, setMyPosts] = useState<PostInterface[] | null>(null);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
+  const { searchValue } = useSelector((state) => state.searchData);
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     PostService.fetchMyPosts(user?.id, setMyPosts, setIsAppInitialized);
-  }, [user, myPosts]);
+  }, [user, searchValue]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(searchDataActions.reset());
+    };
+  }, [dispatch]);
 
   if (!isAppInitialized)
     return (
       <>
-        <LinearProgress />
+        {SKELETON_QUANTITY.map((number) => (
+          <PageSkeleton key={number} />
+        ))}
       </>
     );
 
