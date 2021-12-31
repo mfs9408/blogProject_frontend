@@ -8,11 +8,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import useStyles from './UserMenu.styles';
+import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store';
 import MenuLink from '../MenuLink';
 import { AuthServiceBase } from '../../services/AuthService.base';
 import { userActions } from '../../store/user/slice';
-import { useDispatch } from 'react-redux';
 
 const UserMenu = () => {
   const location = useLocation();
