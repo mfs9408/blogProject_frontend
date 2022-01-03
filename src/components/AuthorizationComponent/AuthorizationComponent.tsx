@@ -21,9 +21,9 @@ const AuthorizationComponent = ({
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    AuthServiceBase.login(email, password).then((response) =>
-      dispatch(userActions.getUser(response))
-    );
+    AuthServiceBase.login(email, password)
+      .then((response) => dispatch(userActions.getUser(response)))
+      .catch((e) => console.log(e.response));
   };
 
   return (

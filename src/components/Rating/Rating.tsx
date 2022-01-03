@@ -28,7 +28,9 @@ const Rating = ({ rating, postId, usersScore }: RatingProperty) => {
   const TEXT_SIZE = isSm ? 'medium' : 'large';
 
   const changeScore = () => {
-    return PostService.fetchRating(user?.id, postId, score, setRate);
+    return PostService.fetchRating(user?.id, postId, score).then(({ data }) => {
+      setRate(data.payload.rating);
+    });
   };
 
   const raiseRating = () => {

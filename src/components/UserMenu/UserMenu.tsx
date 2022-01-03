@@ -1,11 +1,12 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import { useLocation, useNavigate } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
-import Button from '@material-ui/core/Button';
+import ListItemButton from '@mui/material/ListItemButton';
+import Button from '@mui/material/Button';
 import Paper from '@material-ui/core/Paper';
 import useStyles from './UserMenu.styles';
 import { useDispatch } from 'react-redux';
@@ -16,7 +17,6 @@ import { userActions } from '../../store/user/slice';
 
 const UserMenu = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -38,27 +38,25 @@ const UserMenu = () => {
               </Grid>
               <Grid item className={classes.logout}>
                 <Typography
-                  onClick={async () => {
-                    await AuthServiceBase.logout()
-                      .then(() => {
-                        dispatch(userActions.removeUser());
-                      })
-                      .finally(() => navigate('/'));
+                  onClick={() => {
+                    AuthServiceBase.logout().then(() => {
+                      dispatch(userActions.removeUser());
+                    });
                   }}
                   variant="body2"
                 >
-                  Выйти
+                  Logout
                 </Typography>
               </Grid>
             </div>
           </Grid>
           <Grid container direction="column">
             <MenuLink to="/myposts" pathname={location.pathname}>
-              <ListItem button className={classes.button}>
+              <ListItemButton className={classes.button}>
                 <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
                   My posts
                 </ListItemText>
-              </ListItem>
+              </ListItemButton>
             </MenuLink>
             <ListItem disabled button className={classes.button}>
               <ListItemText primaryTypographyProps={{ variant: 'h6' }}>
@@ -78,11 +76,16 @@ const UserMenu = () => {
           </Grid>
         </Grid>
       </Paper>
-      <MenuLink to="/newpost" pathname={location.pathname}>
-        <Button fullWidth color="secondary" variant="contained">
-          Create new post
-        </Button>
-      </MenuLink>
+      <Button
+        fullWidth
+        color="primary"
+        variant="contained"
+        disabled={!user?.isActivated}
+        component={Link}
+        to="/newpost"
+      >
+        Create new post
+      </Button>
     </>
   );
 };

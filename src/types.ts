@@ -21,6 +21,7 @@ export interface UserInterface {
   id: string;
   role: [string];
   nickname: string;
+  isActivated: boolean;
 }
 
 interface TokensInterface {

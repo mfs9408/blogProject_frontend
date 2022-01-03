@@ -18,13 +18,15 @@ const MainPage = () => {
   const { searchValue } = useSelector((state) => state.searchData);
   const { user } = useSelector((state) => state.user);
 
+  const page = 1;
+
   useEffect(() => {
-    PostService.fetchPosts(
-      user?.id,
-      setPosts,
-      setIsAppInitialized,
-      searchValue
-    );
+    PostService.fetchPosts(user?.id, searchValue, page)
+      .then(({ data }) => {
+        setPosts(data.payload);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setIsAppInitialized(true));
   }, [user, searchValue]);
 
   useEffect(() => {

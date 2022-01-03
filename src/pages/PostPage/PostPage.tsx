@@ -12,7 +12,9 @@ const PostPage = () => {
   const [post, setPost] = useState<PostInterface | null>(null);
 
   useEffect(() => {
-    PostService.fetchPost(id, user?.id, setPost);
+    PostService.fetchPost(id, user?.id)
+      .then(({ data }) => setPost(data.payload))
+      .catch((e) => console.log(e));
   }, [user]);
 
   if (!post) return null;

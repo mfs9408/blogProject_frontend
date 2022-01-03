@@ -16,8 +16,8 @@ export class AuthServiceBase {
       },
     });
 
-    localStorage.setItem('token', data.tokens.refreshToken);
-    return jwt_decode(data.tokens.refreshToken);
+    localStorage.setItem('token', data.tokens.accessToken);
+    return jwt_decode(data.tokens.accessToken);
   }
 
   static async login(email: string, password: string) {
@@ -30,7 +30,7 @@ export class AuthServiceBase {
       { headers: {}, withCredentials: true }
     );
 
-    localStorage.setItem('token', data.payload.tokens.refreshToken);
+    localStorage.setItem('token', data.payload.tokens.accessToken);
     return data.payload;
   }
 
@@ -40,7 +40,7 @@ export class AuthServiceBase {
       { headers: {}, withCredentials: true }
     );
 
-    localStorage.setItem('token', data.payload.tokens.refreshToken);
+    localStorage.setItem('token', data.payload.tokens.accessToken);
     return data;
   }
 

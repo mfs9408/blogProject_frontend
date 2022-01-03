@@ -9,13 +9,11 @@ interface LinkProps {
   pathname: string;
 }
 
-interface OtherProps {}
-
 const MenuLink = ({
   children,
   to,
   pathname,
-}: LinkProps & PropsWithChildren<OtherProps>) => {
+}: LinkProps & PropsWithChildren<{}>) => {
   const classes = useStyles(isEqual(to, pathname))();
 
   return (

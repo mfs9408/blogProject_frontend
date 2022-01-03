@@ -7,7 +7,6 @@ import { PostService } from '../../services/PostService';
 import NoPosts from '../../components/NoPosts';
 import { searchDataActions } from '../../store/searchData/slice';
 import PageSkeleton from '../../components/PageSkeleton';
-import { userActions } from '../../store/user/slice';
 
 const SKELETON_QUANTITY = [1, 2, 3];
 
@@ -20,7 +19,12 @@ const MyPosts = () => {
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    PostService.fetchMyPosts(user?.id, setMyPosts, setIsAppInitialized);
+    PostService.fetchMyPosts(user?.id)
+      .then(({ data }) => {
+        setMyPosts(data.payload);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setIsAppInitialized(true));
   }, [user, searchValue]);
 
   useEffect(() => {

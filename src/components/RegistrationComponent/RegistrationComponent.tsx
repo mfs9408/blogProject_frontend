@@ -25,16 +25,13 @@ const RegistrationComponent = ({
     if (!isEqual(password.value, confirmedPassword.value)) {
       return console.log('wrong');
     }
-    try {
-      await AuthServiceBase.registration(
-        email.value,
-        nickname.value,
-        password.value
-      );
-      navigate('/successfullyregistered');
-    } catch (e: any) {
-      console.log(e.response.data.message);
-    }
+    await AuthServiceBase.registration(
+      email.value,
+      nickname.value,
+      password.value
+    )
+      .then(() => navigate('/successfullyregistered'))
+      .catch((e) => console.log(e.response));
   };
 
   return (

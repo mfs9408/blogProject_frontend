@@ -44,8 +44,10 @@ const NewPostPage = () => {
       };
     });
 
-    await PostService.createNewPost(user, title, contentArray, imgArray);
-    return navigate('/');
+    await PostService.createNewPost(user, title, contentArray, imgArray)
+      .then(({ data }) => data.payload)
+      .catch((e) => console.log(e))
+      .finally(() => navigate('/'));
   };
 
   useEffect(() => {

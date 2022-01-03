@@ -25,8 +25,10 @@ const DeleteDialog = ({
   };
 
   const handlePostDelete = () => {
-    PostService.deletePost(postId);
-    setIsDialogOpen(false);
+    PostService.deletePost(postId)
+      .then(() => console.log('success'))
+      .catch((e) => console.log(e))
+      .finally(() => setIsDialogOpen(false));
   };
 
   return (
