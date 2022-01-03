@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { RegistrationInterface } from '../../types';
 import { AuthServiceBase } from '../../services/AuthService.base';
 import { userActions } from '../../store/user/slice';
+import { Paper } from '@material-ui/core';
 
 const AuthorizationComponent = ({
   setIsRegistration,
@@ -28,56 +29,63 @@ const AuthorizationComponent = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid
-        container
-        item
-        justifyContent="center"
-        spacing={1}
-        className={classes.root}
-      >
-        <Typography
-          variant="h6"
-          color="secondary"
-          className={classes.typography}
+      <Paper>
+        <Grid
+          container
+          item
+          justifyContent="center"
+          spacing={1}
+          className={classes.root}
         >
-          Authorization
-        </Typography>
-        <Grid item xs={10}>
-          <TextField
-            name="email"
-            variant="outlined"
-            placeholder="Email"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <TextField
-            name="password"
-            variant="outlined"
-            placeholder="Password"
-            color="secondary"
-            fullWidth
-            required
-          />
-        </Grid>
-        <Grid item xs={10}>
-          <Button type="submit" variant="contained" color="secondary" fullWidth>
-            Send
-          </Button>
-        </Grid>
-        <Grid item>
           <Typography
             variant="h6"
             color="secondary"
-            className={classes.clickedTypography}
-            onClick={() => setIsRegistration(!isRegistration)}
+            className={classes.typography}
           >
-            Registration
+            Authorization
           </Typography>
+          <Grid item xs={10}>
+            <TextField
+              name="email"
+              variant="outlined"
+              placeholder="Email"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              name="password"
+              variant="outlined"
+              placeholder="Password"
+              color="secondary"
+              fullWidth
+              required
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              Send
+            </Button>
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="h6"
+              color="secondary"
+              className={classes.clickedTypography}
+              onClick={() => setIsRegistration(!isRegistration)}
+            >
+              Registration
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </form>
   );
 };
