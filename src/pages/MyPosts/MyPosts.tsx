@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Post from '../../components/Post';
-import { PostInterface } from '../../types';
-import { useSelector } from '../../store';
-import { PostService } from '../../services/PostService';
-import NoPosts from '../../components/NoPosts';
 import { searchDataActions } from '../../store/searchData/slice';
+import { PostService } from '../../services/PostService';
 import PageSkeleton from '../../components/PageSkeleton';
+import NoPosts from '../../components/NoPosts';
+import { PostInterface } from '../../types';
+import Post from '../../components/Post';
+import { useSelector } from '../../store';
+import { ContextStore } from '../../components/MyPostsProvider/MyPostsProvider';
 
 const SKELETON_QUANTITY = [1, 2, 3];
 
 const MyPosts = () => {
   const dispatch = useDispatch();
+  const { myPosts, setMyPosts } = useContext(ContextStore);
 
-  const [myPosts, setMyPosts] = useState<PostInterface[] | null>(null);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
   const { searchValue } = useSelector((state) => state.searchData);
   const { user } = useSelector((state) => state.user);
@@ -41,6 +42,8 @@ const MyPosts = () => {
         ))}
       </>
     );
+
+  console.log(myPosts);
 
   return (
     <>

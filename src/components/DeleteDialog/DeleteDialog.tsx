@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,6 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PostService } from '../../services/PostService';
+import { ContextStore } from '../MyPostsProvider/MyPostsProvider';
+import { PostType } from '../../types';
 
 interface DialogInterface {
   isDialogOpen: boolean;
@@ -20,13 +22,17 @@ const DeleteDialog = ({
   isDialogOpen,
   setIsDialogOpen,
 }: DialogInterface) => {
+  const { myPosts, setMyPosts } = useContext(ContextStore);
+
   const handleClose = () => {
     setIsDialogOpen(false);
   };
 
   const handlePostDelete = () => {
     PostService.deletePost(postId)
-      .then(() => console.log('success'))
+      .then(() => {
+        setMyPosts(myPosts.filter((post: PostType) => post.id !== postId));
+      })
       .catch((e) => console.log(e))
       .finally(() => setIsDialogOpen(false));
   };

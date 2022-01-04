@@ -8,7 +8,7 @@ import { apiClient } from '../Api';
 
 export class PostService {
   static createNewPost(
-    user: UserInterface | null | undefined,
+    user: UserInterface | undefined | null,
     title: string,
     content: PostType[],
     imgArray: File[]
@@ -37,7 +37,7 @@ export class PostService {
     page: number
   ) {
     return apiClient.post<BaseServerResponse<PostInterface[]>>(
-      `/authposts/${page}`,
+      `/allposts/${page}`,
       {
         userId: userId,
         searchValue: searchValue,
