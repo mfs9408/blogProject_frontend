@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { ContextStore } from '../../components/MyPostsProvider/MyPostsProvider';
 import { searchDataActions } from '../../store/searchData/slice';
 import { PostService } from '../../services/PostService';
 import PageSkeleton from '../../components/PageSkeleton';
@@ -7,7 +8,6 @@ import NoPosts from '../../components/NoPosts';
 import { PostInterface } from '../../types';
 import Post from '../../components/Post';
 import { useSelector } from '../../store';
-import { ContextStore } from '../../components/MyPostsProvider/MyPostsProvider';
 
 const SKELETON_QUANTITY = [1, 2, 3];
 
@@ -26,7 +26,7 @@ const MyPosts = () => {
       })
       .catch((e) => console.log(e))
       .finally(() => setIsAppInitialized(true));
-  }, [user, searchValue]);
+  }, [user, searchValue, ]);
 
   useEffect(() => {
     return () => {
@@ -42,8 +42,6 @@ const MyPosts = () => {
         ))}
       </>
     );
-
-  console.log(myPosts);
 
   return (
     <>

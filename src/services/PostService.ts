@@ -1,4 +1,5 @@
 import {
+  AllPostsResponse,
   BaseServerResponse,
   PostInterface,
   PostType,
@@ -36,7 +37,7 @@ export class PostService {
     searchValue: string | null,
     page: number
   ) {
-    return apiClient.post<BaseServerResponse<PostInterface[]>>(
+    return apiClient.post<BaseServerResponse<AllPostsResponse>>(
       `/allposts/${page}`,
       {
         userId: userId,

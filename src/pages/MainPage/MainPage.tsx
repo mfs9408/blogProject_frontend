@@ -7,6 +7,7 @@ import { PostService } from '../../services/PostService';
 import { searchDataActions } from '../../store/searchData/slice';
 import PageSkeleton from '../../components/PageSkeleton';
 import NoPosts from '../../components/NoPosts';
+import PageNumber from '../../components/PageNumber';
 
 const SKELETON_QUANTITY = [1, 2, 3];
 
@@ -14,20 +15,21 @@ const MainPage = () => {
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState<PostInterface[] | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [isAppInitialized, setIsAppInitialized] = useState<boolean>(false);
+  const [pagesQuantity, setPagesQuantity] = useState<number>(0);
   const { searchValue } = useSelector((state) => state.searchData);
   const { user } = useSelector((state) => state.user);
 
-  const page = 1;
-
   useEffect(() => {
-    PostService.fetchPosts(user?.id, searchValue, page)
+    PostService.fetchPosts(user?.id, searchValue, currentPage)
       .then(({ data }) => {
-        setPosts(data.payload);
+        setPosts(data.payload.allPosts);
+        setPagesQuantity(data.payload.pageQuantity);
       })
       .catch((e) => console.log(e))
       .finally(() => setIsAppInitialized(true));
-  }, [user, searchValue]);
+  }, [user, searchValue, currentPage]);
 
   useEffect(() => {
     return () => {
@@ -53,6 +55,11 @@ const MainPage = () => {
       ) : (
         <NoPosts />
       )}
+      <PageNumber
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pagesQuantity={pagesQuantity}
+      />
     </>
   );
 };

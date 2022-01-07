@@ -29,8 +29,10 @@ interface TokensInterface {
   accessToken: string;
 }
 
-export interface AllPostsResponse
-  extends BaseServerResponse<PostInterface[] | null> {}
+export interface AllPostsResponse {
+  allPosts: PostInterface[];
+  pageQuantity: number;
+}
 
 export interface PostInterface {
   id: string;
