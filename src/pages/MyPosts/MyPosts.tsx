@@ -26,7 +26,7 @@ const MyPosts = () => {
       })
       .catch((e) => console.log(e))
       .finally(() => setIsAppInitialized(true));
-  }, [user, searchValue, ]);
+  }, [user, searchValue, setMyPosts]);
 
   useEffect(() => {
     return () => {

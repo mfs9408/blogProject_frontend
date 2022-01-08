@@ -49,7 +49,6 @@ export class AuthServiceBase {
       headers: {},
       withCredentials: true,
     });
-    console.log(data);
 
     localStorage.clear();
     return data;

@@ -18,7 +18,6 @@ const NewPostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [imgArray, setImgArray] = useState<File[]>([]);
   const { user } = useSelector((state) => state.user);
   const { content, title } = useSelector((state) => state.postData);
 
@@ -36,7 +35,6 @@ const NewPostPage = () => {
       }
 
       imgArray.push(event.target[field.id].files[0]);
-      // setImgArray([...imgArray, event.target[field.id].files[0]]);
       return {
         type: field.type,
         value: event.target[field.id].files[0]?.name,
@@ -84,7 +82,6 @@ const NewPostPage = () => {
           variant="contained"
           color="secondary"
           className={classes.button}
-          // onClick={onSubmit}
         >
           Create a post
         </Button>

@@ -15,7 +15,7 @@ const PostPage = () => {
     PostService.fetchPost(id, user?.id)
       .then(({ data }) => setPost(data.payload))
       .catch((e) => console.log(e));
-  }, [user]);
+  }, [id, user]);
 
   if (!post) return null;
 
