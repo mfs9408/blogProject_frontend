@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import useStyles from './UserMenu.styles';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store';
+import ButtonTooltip from '../ButtonTooltip';
 import MenuLink from '../MenuLink';
 import { AuthServiceBase } from '../../services/AuthService.base';
 import { userActions } from '../../store/user/slice';
@@ -76,16 +77,22 @@ const UserMenu = () => {
           </Grid>
         </Grid>
       </Paper>
-      <Button
-        fullWidth
-        color="primary"
-        variant="contained"
-        disabled={!user?.isActivated}
-        component={Link}
-        to="/newpost"
+      <ButtonTooltip
+        title={
+          !user?.isActivated ? 'Activate your account to create a post' : ''
+        }
       >
-        Create new post
-      </Button>
+        <Button
+          fullWidth
+          color="primary"
+          variant="contained"
+          disabled={!user?.isActivated}
+          component={Link}
+          to="/newpost"
+        >
+          Create new post
+        </Button>
+      </ButtonTooltip>
     </>
   );
 };
