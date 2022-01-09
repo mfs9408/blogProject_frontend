@@ -29,6 +29,7 @@
     "react/no-array-index-key": "off",
     "no-prototype-builtins": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "jsx-a11y/click-events-have-key-events": "off"
+    "jsx-a11y/click-events-have-key-events": "off",
+    "import/no-anonymous-default-export": [2, { "allowArrowFunction": true }]
   }
 }
