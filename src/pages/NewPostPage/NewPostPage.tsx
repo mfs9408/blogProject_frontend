@@ -10,7 +10,7 @@ import { PostType } from '../../types';
 import ContentCreator from '../../components/FieldsCreator';
 import AddContentField from '../../components/AddContentField';
 import { PostService } from '../../services/PostService';
-import { postActions } from '../../store/postData/slice';
+import { postActions } from '../../store/postData';
 import { useNavigate } from 'react-router-dom';
 
 const NewPostPage = () => {

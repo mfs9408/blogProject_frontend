@@ -14,7 +14,7 @@ import { useSelector } from '../../store';
 import ButtonTooltip from '../ButtonTooltip';
 import MenuLink from '../MenuLink';
 import { AuthServiceBase } from '../../services/AuthService.base';
-import { userActions } from '../../store/user/slice';
+import { userActions } from '../../store/user';
 
 const UserMenu = () => {
   const location = useLocation();

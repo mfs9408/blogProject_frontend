@@ -5,7 +5,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useDispatch } from 'react-redux';
-import { postActions } from '../../store/postData/slice';
+import { postActions } from '../../store/postData';
 import useStyles from './AddContentField.styles';
 
 const AddContentField = () => {

@@ -4,7 +4,7 @@ import { PostInterface } from '../../types';
 import Post from '../../components/Post';
 import { useSelector } from '../../store';
 import { PostService } from '../../services/PostService';
-import { searchDataActions } from '../../store/searchData/slice';
+import { searchDataActions } from '../../store/searchData';
 import PageSkeleton from '../../components/PageSkeleton';
 import NoPosts from '../../components/NoPosts';
 import PageNumber from '../../components/PageNumber';

@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { postActions } from '../../store/postData';
 import useStyles from './StringField.styles';
-import { postActions } from '../../store/postData/slice';
 
 interface StringFieldInterface {
   id: string;

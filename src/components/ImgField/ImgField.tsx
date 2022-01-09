@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { postActions } from '../../store/postData/slice';
+import { postActions } from '../../store/postData';
 import useStyles from './ImgField.styles';
 
 interface StringFieldInterface {

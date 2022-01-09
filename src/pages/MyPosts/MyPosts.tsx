@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ContextStore } from '../../components/MyPostsProvider/MyPostsProvider';
-import { searchDataActions } from '../../store/searchData/slice';
+import { searchDataActions } from '../../store/searchData';
 import { PostService } from '../../services/PostService';
 import PageSkeleton from '../../components/PageSkeleton';
 import NoPosts from '../../components/NoPosts';

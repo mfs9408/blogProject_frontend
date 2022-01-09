@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Container from '@material-ui/core/Container';
 import { useLocation } from 'react-router-dom';
+import { searchDataActions } from '../../store/searchData';
 import useStyles from './AppBar.styles';
 import AppBarLink from '../AppBarLink';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store';
-import { searchDataActions } from '../../store/searchData/slice';
 
 const AppBar = () => {
   const classes = useStyles();
