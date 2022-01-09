@@ -11,6 +11,7 @@ import Rating from '../Rating';
 import useStyles from './Post.styles';
 import parseAndFormatDate from '../../utils/parseAndFormatDate';
 import DeleteDialog from '../DeleteDialog';
+import AlertSnackBar from '../AlertSnackbar';
 
 const Post = ({
   id,
@@ -84,6 +85,7 @@ const Post = ({
         isDialogOpen={isDialogOpen}
         setIsDialogOpen={setIsDialogOpen}
       />
+      <AlertSnackBar message="Your post was deleted" severity="success" />
     </Grid>
   );
 };
