@@ -1,18 +1,23 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import AppBarLink from '../AppBarLink';
 import Typography from '@material-ui/core/Typography';
 import MUIAppBar from '@material-ui/core/AppBar';
-import SearchIcon from '@material-ui/icons/Search';
-import { useLocation } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 import useStyles from './TemporaryAppBar.styles';
+import AppBarLink from '../AppBarLink';
+import { useIsSideBarOpen } from '../../utils/hooks/useIsSideBarOpen';
 
 const TemporaryAppBar = () => {
   const classes = useStyles();
   const location = useLocation();
+  const [isSideBarOpen, setIsSideBarOpen] = useIsSideBarOpen();
+
+  const toggleOpen = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
 
   return (
     <MUIAppBar className={classes.appBar} position="relative">
@@ -29,8 +34,7 @@ const TemporaryAppBar = () => {
           </AppBarLink>
         </Grid>
         <Grid container justifyContent="space-around" item xs={1}>
-          <SearchIcon />
-          <SupervisedUserCircleIcon />
+          <Avatar onClick={toggleOpen} />
         </Grid>
       </Toolbar>
     </MUIAppBar>
