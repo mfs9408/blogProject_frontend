@@ -17,7 +17,7 @@ const MenuDrawer = ({ children, isSm }: DrawerProps) => {
 
   useEffect(() => {
     setIsSideBarOpen(false);
-  }, [isSm]);
+  }, [isSm, setIsSideBarOpen]);
 
   return (
     <Drawer

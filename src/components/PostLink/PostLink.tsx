@@ -3,12 +3,12 @@ import MuiLink from '@material-ui/core/Link';
 import { Link as RouterLink } from 'react-router-dom';
 import useStyles from './PostLink.styles';
 
-type TemplateProps = PropsWithChildren<{
-  to: string;
+type PostLinkProps = PropsWithChildren<{
+  id: string;
   pointerEvent?: 'auto' | 'none' | undefined;
 }>;
 
-const PostLink = ({ children, to, pointerEvent }: TemplateProps) => {
+const PostLink = ({ children, id, pointerEvent }: PostLinkProps) => {
   const classes = useStyles(pointerEvent)();
 
   return (
@@ -16,7 +16,7 @@ const PostLink = ({ children, to, pointerEvent }: TemplateProps) => {
       className={classes.root}
       underline="none"
       component={RouterLink}
-      to={`${to}`}
+      to={`/${id}`}
     >
       {children}
     </MuiLink>

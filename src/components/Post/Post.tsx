@@ -59,7 +59,7 @@ const Post = ({
             </Grid>
           </Grid>
           <Grid item xs={12} className={classes.title}>
-            <PostLink to={id} pointerEvent={pointerEvent}>
+            <PostLink id={id} pointerEvent={pointerEvent}>
               <Typography variant="h4">{title}</Typography>
             </PostLink>
           </Grid>
