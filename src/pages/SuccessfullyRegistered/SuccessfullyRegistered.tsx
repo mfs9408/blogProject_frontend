@@ -29,7 +29,7 @@ const SuccessfullyRegistered = () => {
             confirmation.
           </Typography>
           <Typography variant="body1" align="center">
-            <Link to="/main" label="Click here " />
+            <Link to="/" label="Click here " />
             to come on main page.
           </Typography>
         </Paper>
