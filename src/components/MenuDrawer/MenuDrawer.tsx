@@ -1,17 +1,15 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import { useMediaQuery, useTheme } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import { useIsSideBarOpen } from '../../utils/hooks/useIsSideBarOpen';
+import useStyles from './MenuDrawer.style';
 
 type DrawerProps = PropsWithChildren<{}> & {
-  isSm?: boolean;
+  isSm: boolean;
 };
 
-const MenuDrawer = ({ children }: DrawerProps) => {
+const MenuDrawer = ({ children, isSm }: DrawerProps) => {
+  const classes = useStyles();
   const [isSideBarOpen, setIsSideBarOpen] = useIsSideBarOpen();
-
-  const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
 
   const toggleOpen = () => {
     setIsSideBarOpen(!isSideBarOpen);
@@ -27,8 +25,10 @@ const MenuDrawer = ({ children }: DrawerProps) => {
       variant={isSm ? 'temporary' : 'permanent'}
       open={isSideBarOpen}
       onClose={toggleOpen}
+      classes={{
+        paper: classes.drawer,
+      }}
     >
-
       {children}
     </Drawer>
   );
