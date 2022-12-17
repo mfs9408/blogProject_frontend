@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import MUIAppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Container from '@material-ui/core/Container';
 import { useLocation } from 'react-router-dom';
 import { searchDataActions } from '../../store/searchData';
 import useStyles from './AppBar.styles';
 import AppBarLink from '../AppBarLink';
-import { useDispatch } from 'react-redux';
 import { useSelector } from '../../store';
+import Logo from '../Logo';
 
 const AppBar = () => {
   const classes = useStyles();
@@ -29,9 +29,7 @@ const AppBar = () => {
     <MUIAppBar className={classes.appBar} position="relative">
       <Container maxWidth="lg">
         <Grid container alignItems="center">
-          <Grid container item xs={3}>
-            <DoubleArrowIcon color="secondary" />
-          </Grid>
+          <Logo desktop={true} />
           <Grid container item xs={5}>
             <AppBarLink to="/" pathname={location.pathname}>
               <Typography variant="h6">Main</Typography>

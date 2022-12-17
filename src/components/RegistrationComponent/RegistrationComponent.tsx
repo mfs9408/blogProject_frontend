@@ -46,7 +46,8 @@ const RegistrationComponent = ({
       password.value
     )
       .then(() => navigate('/successfullyregistered'))
-      .catch(() => setIsAlertSnackBarOpen(true));
+      .catch(() => setIsAlertSnackBarOpen(true))
+      .finally(() => setIsRegistration(false));
   };
 
   return (
